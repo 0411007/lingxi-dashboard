@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="filename" content="lingxi_desktop_dashboard.html">
+    <title>灵犀掌柜商家版 - 首页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#7C8CFF',
+                        secondary: '#9FD8D2',
+                        accent: '#B8A8FF',
+                        bg: '#F7F9FC',
+                        mainText: '#1F2A37',
+                        bodyText: '#4B5563',
+                        subText: '#8A94A6',
+                        border: '#E6EAF2',
+                        warning: '#F2997A',
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(124, 140, 255, 0.05), 0 2px 4px -2px rgba(124, 140, 255, 0.02)',
+                        'card': '0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #F7F9FC;
+            color: #1F2A37;
+        }
+        .sidebar-item-active {
+            background: linear-gradient(90deg, rgba(124, 140, 255, 0.1) 0%, rgba(124, 140, 255, 0) 100%);
+            border-right: 3px solid #7C8CFF;
+            color: #7C8CFF;
+            font-weight: 600;
+        }
+        .glass-card {
+            background: #FFFFFF;
+            border: 1px solid #E6EAF2;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            box-shadow: 0 20px 40px -12px rgba(124, 140, 255, 0.12);
+            transform: translateY(-2px);
+        }
+        .nav-item:hover { color: #7C8CFF; }
+        .stat-value { font-family: 'Inter', sans-serif; font-weight: 700; }
+        
+        /* 隐藏滚动条 */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-thumb { background: #E6EAF2; border-radius: 10px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+    </style>
+</head>
+<body class="min-h-screen flex overflow-hidden">
+
+    <!-- 2. 左侧导航栏 -->
+    <aside class="w-64 bg-white border-r border-border flex flex-col z-20">
+        <div class="h-16 flex items-center px-6 border-b border-border">
+            <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center mr-3 shadow-lg shadow-primary/20">
+                <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+            </div>
+            <span class="text-lg font-bold tracking-tight text-primary">灵犀掌柜<span class="text-mainText ml-1 italic">Pro</span></span>
+        </div>
+        
+        <nav class="flex-1 py-6">
+            <div class="px-6 mb-4 text-[12px] font-bold text-subText uppercase tracking-wider">经营概览</div>
+            <a href="#" class="sidebar-item-active flex items-center px-6 py-3 mb-1 transition-all">
+                <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i> 实时数据看板
+            </a>
+            <a href="#" class="flex items-center px-6 py-3 mb-1 text-bodyText hover:text-primary transition-all group">
+                <i data-lucide="shopping-bag" class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform"></i> 选品决策中心
+            </a>
+            <a href="#" class="flex items-center px-6 py-3 mb-1 text-bodyText hover:text-primary transition-all group">
+                <i data-lucide="zap" class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform"></i> 智能策略中心
+            </a>
+            
+            <div class="px-6 mt-8 mb-4 text-[12px] font-bold text-subText uppercase tracking-wider">资产管理</div>
+            <a href="#" class="flex items-center px-6 py-3 mb-1 text-bodyText hover:text-primary transition-all group">
+                <i data-lucide="folder-kanban" class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform"></i> AI 资产与知识库
+            </a>
+            <a href="#" class="flex items-center px-6 py-3 mb-1 text-bodyText hover:text-primary transition-all group">
+                <i data-lucide="message-square" class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform"></i> 导购数字人管理
+            </a>
+        </nav>
+
+        <div class="p-6">
+            <div class="bg-primary/5 rounded-xl p-4 border border-primary/10">
+                <p class="text-xs font-bold text-primary mb-1">灵犀 AI Pro 已开启</p>
+                <p class="text-[11px] text-subText leading-relaxed">当前正在通过 AI 引擎优化全店 12% 的转化流量。</p>
+            </div>
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+        <!-- 1. 顶部导航栏 -->
+        <header class="h-16 bg-white border-b border-border flex items-center justify-between px-8 z-10">
+            <div class="flex items-center space-x-8">
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-sm font-bold text-primary border-b-2 border-primary py-5">首页</a>
+                    <a href="#" class="text-sm font-medium text-bodyText hover:text-primary py-5 transition-colors">经营大盘</a>
+                    <a href="#" class="text-sm font-medium text-bodyText hover:text-primary py-5 transition-colors">AI资产生成</a>
+                    <a href="#" class="text-sm font-medium text-bodyText hover:text-primary py-5 transition-colors">知识库管理</a>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-5">
+                <div class="relative group">
+                    <input type="text" placeholder="搜索功能、策略、商品..." class="w-64 h-9 bg-bg border border-border rounded-full pl-10 pr-4 text-xs focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all">
+                    <i data-lucide="search" class="w-4 h-4 text-subText absolute left-3.5 top-2.5"></i>
+                </div>
+                <div class="flex items-center space-x-2 border-l border-border pl-5">
+                    <button class="w-9 h-9 rounded-full hover:bg-bg flex items-center justify-center text-bodyText relative">
+                        <i data-lucide="bell" class="w-5 h-5"></i>
+                        <span class="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full border-2 border-white"></span>
+                    </button>
+                    <button class="w-9 h-9 rounded-full hover:bg-bg flex items-center justify-center text-bodyText">
+                        <i data-lucide="settings" class="w-5 h-5"></i>
+                    </button>
+                    <div class="flex items-center ml-2 cursor-pointer group">
+                        <div class="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xs ring-2 ring-transparent group-hover:ring-primary/20 transition-all">Admin</div>
+                        <i data-lucide="chevron-down" class="w-4 h-4 ml-2 text-subText"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 3. 主内容区 -->
+        <main class="flex-1 overflow-y-auto p-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex justify-between items-end mb-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-mainText">灵犀掌柜商家版首页</h2>
+                        <p class="text-sm text-subText mt-1">欢迎回来，这是灵犀为您整理的今日经营重点建议。</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button class="px-4 py-2 bg-white border border-border text-sm font-medium rounded-lg hover:shadow-sm transition-all flex items-center">
+                            <i data-lucide="calendar" class="w-4 h-4 mr-2 text-bodyText"></i> 2024-05-20
+                        </button>
+                        <button class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-opacity-90 shadow-lg shadow-primary/20 transition-all flex items-center">
+                            <i data-lucide="plus" class="w-4 h-4 mr-2"></i> 发布新活动
+                        </button>
+                    </div>
+                </div>
+
+                <!-- A. 核心指标看板 -->
+                <section class="mb-10">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="bar-chart-3" class="w-5 h-5 text-primary mr-2"></i>
+                        <h3 class="text-lg font-bold text-mainText">核心指标看板</h3>
+                    </div>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="glass-card p-6 relative overflow-hidden group">
+                            <div class="absolute -right-4 -top-4 opacity-5 group-hover:scale-110 transition-transform">
+                                <i data-lucide="users" class="w-24 h-24"></i>
+                            </div>
+                            <p class="text-xs font-bold text-subText uppercase tracking-wider mb-2">访客数 (UV)</p>
+                            <div class="flex items-baseline space-x-2">
+                                <span class="stat-value text-3xl">12,000</span>
+                                <span class="text-xs font-bold text-emerald-500 flex items-center italic">
+                                    <i data-lucide="trending-up" class="w-3 h-3 mr-0.5"></i> +12.5%
+                                </span>
+                            </div>
+                            <div class="mt-4 h-1.5 w-full bg-bg rounded-full overflow-hidden">
+                                <div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 relative overflow-hidden group">
+                            <div class="absolute -right-4 -top-4 opacity-5 group-hover:scale-110 transition-transform">
+                                <i data-lucide="mouse-pointer-click" class="w-24 h-24"></i>
+                            </div>
+                            <p class="text-xs font-bold text-subText uppercase tracking-wider mb-2">AI 导购转化率</p>
+                            <div class="flex items-baseline space-x-2">
+                                <span class="stat-value text-3xl">18</span><span class="text-xl font-bold text-mainText">%</span>
+                                <span class="text-xs font-bold text-emerald-500 flex items-center italic">
+                                    <i data-lucide="trending-up" class="w-3 h-3 mr-0.5"></i> +2.1%
+                                </span>
+                            </div>
+                            <div class="mt-4 flex items-center space-x-1">
+                                <span class="text-[10px] px-2 py-0.5 bg-secondary/10 text-secondary font-bold rounded">AI 表现优异</span>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 relative overflow-hidden group">
+                            <div class="absolute -right-4 -top-4 opacity-5 group-hover:scale-110 transition-transform">
+                                <i data-lucide="coins" class="w-24 h-24 text-primary"></i>
+                            </div>
+                            <p class="text-xs font-bold text-subText uppercase tracking-wider mb-2">今日 GMV</p>
+                            <div class="flex items-baseline space-x-2">
+                                <span class="text-lg font-bold text-subText">¥</span>
+                                <span class="stat-value text-3xl">52,480.00</span>
+                                <span class="text-xs font-bold text-emerald-500 flex items-center italic">
+                                    <i data-lucide="trending-up" class="w-3 h-3 mr-0.5"></i> +5.4%
+                                </span>
+                            </div>
+                            <p class="text-[10px] text-subText mt-4 font-medium flex items-center">
+                                <i data-lucide="info" class="w-3 h-3 mr-1"></i> 指标 3 分钟前已同步大盘
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- B. 趋势选品助手 -->
+                    <section>
+                        <div class="glass-card p-8 h-full flex flex-col">
+                            <div class="flex justify-between items-start mb-6">
+                                <div>
+                                    <div class="flex items-center space-x-2 mb-1">
+                                        <div class="w-2 h-6 bg-secondary rounded-full"></div>
+                                        <h3 class="text-[18px] font-bold text-mainText">[B-01] 趋势选品助手</h3>
+                                    </div>
+                                    <p class="text-xs text-subText">基于全网大盘数据挖掘</p>
+                                </div>
+                                <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs font-bold rounded-lg uppercase tracking-wider">AI Trend</span>
+                            </div>
+
+                            <div class="space-y-4 flex-1">
+                                <div class="flex items-center justify-between p-4 bg-bg/50 rounded-xl border border-border group hover:border-secondary/30 transition-all">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-xl shadow-sm">🧴</div>
+                                        <span class="text-sm font-bold text-bodyText">防晒披肩</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-sm font-bold text-rose-500">200%</span>
+                                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-rose-500"></i>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-bg/50 rounded-xl border border-border group hover:border-secondary/30 transition-all">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-xl shadow-sm">🏕️</div>
+                                        <span class="text-sm font-bold text-bodyText">户外露营风</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-sm font-bold text-rose-500">150%</span>
+                                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-rose-500"></i>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-primary/5 rounded-xl border border-primary/10 relative overflow-hidden">
+                                    <div class="flex items-start space-x-3">
+                                        <i data-lucide="lightbulb" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i>
+                                        <div>
+                                            <p class="text-sm font-bold text-primary">建议下周主推：薄款防晒服</p>
+                                            <p class="text-[11px] text-primary/60 mt-1 leading-relaxed">灵犀预测：该类目在华东区流速将持续攀升 15% 以上。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="w-full mt-8 py-3 bg-mainText text-white text-sm font-bold rounded-xl hover:bg-black transition-all shadow-lg flex items-center justify-center">
+                                一键查看竞品货源
+                                <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- C. 经营策略辅助 -->
+                    <section>
+                        <div class="glass-card p-8 h-full flex flex-col border-l-4 border-l-warning">
+                            <div class="flex justify-between items-start mb-6">
+                                <div>
+                                    <div class="flex items-center space-x-2 mb-1">
+                                        <div class="w-2 h-6 bg-warning rounded-full"></div>
+                                        <h3 class="text-[18px] font-bold text-mainText">[B-04] 经营策略辅助</h3>
+                                    </div>
+                                    <p class="text-xs text-subText">基于店铺内部流速检测</p>
+                                </div>
+                                <span class="px-3 py-1 bg-warning/10 text-warning text-xs font-bold rounded-lg uppercase tracking-wider">Strategy</span>
+                            </div>
+
+                            <div class="space-y-4 flex-1">
+                                <div class="flex items-center space-x-4 p-4 bg-rose-50 rounded-xl border border-rose-100">
+                                    <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
+                                        <i data-lucide="package-search" class="w-5 h-5 text-rose-500"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-bold text-mainText">库存预警</p>
+                                            <span class="text-[10px] font-bold bg-rose-500 text-white px-1.5 py-0.5 rounded">核心sku</span>
+                                        </div>
+                                        <p class="text-[11px] text-bodyText mt-0.5">法式碎花裙-M码 即将售罄 (余 5 件)</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 p-4 bg-indigo-50 rounded-xl border border-indigo-100">
+                                    <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
+                                        <i data-lucide="trending-down" class="w-5 h-5 text-indigo-500"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-bold text-mainText">调价建议</p>
+                                        <p class="text-[11px] text-bodyText mt-0.5">加绒卫衣滞销 建议 <span class="font-bold text-indigo-600 underline">8折</span> 清仓</p>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-bg rounded-xl border border-border">
+                                    <div class="flex items-center space-x-2 mb-2">
+                                        <i data-lucide="activity" class="w-4 h-4 text-subText"></i>
+                                        <span class="text-xs font-bold text-subText uppercase tracking-tighter">店铺健康度评分</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="flex-1 h-2 bg-white rounded-full overflow-hidden border border-border">
+                                            <div class="h-full bg-gradient-to-r from-warning to-secondary" style="width: 82%;"></div>
+                                        </div>
+                                        <span class="text-sm font-black text-mainText">82</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="w-full mt-8 py-3 bg-white border-2 border-primary text-primary text-sm font-bold rounded-xl hover:bg-primary hover:text-white transition-all flex items-center justify-center group">
+                                立即前往商品管理
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+            
+            // 简单模拟卡片动画
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(10px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
