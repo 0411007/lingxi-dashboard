@@ -1,9 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=merchant-home.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>灵犀导购系统</title>
 </head>
 <body>
+
+  <h1>灵犀导购系统</h1>
+
+  <h2>商家端</h2>
+  <ul>
+    <li><a href="./merchant-home.html">商家首页</a></li>
+    <li><a href="./merchant-product.html">商品管理页</a></li>
+  </ul>
+
+  <h2>用户端</h2>
+  <ul>
+    <li><a href="./user-chat.html">聊天页</a></li>
+    <li><a href="./user-recommend.html">推荐页</a></li>
+    <li><a href="./user-outfit.html">穿搭页</a></li>
+  </ul>
+
 </body>
 </html>
