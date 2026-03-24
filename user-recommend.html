@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="filename" content="lingxi_ai_shopping_v2.html">
+    <title>灵犀导购助理 - 移动穿搭定制</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            start: '#7C8CFF',
+                            end: '#5B6BFF',
+                        },
+                        bgLight: '#F5F5F7',
+                        cardBg: '#FFFFFF',
+                    },
+                    borderRadius: {
+                        '3xl': '24px',
+                        '4xl': '32px',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .iphone-frame {
+            width: 375px;
+            height: 812px;
+            background-color: #F5F5F7;
+            border-radius: 44px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            border: 10px solid #1a1a1a;
+        }
+        .chat-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 16px;
+            scrollbar-width: none;
+            background: #F5F5F7;
+        }
+        .chat-scroll::-webkit-scrollbar { display: none; }
+        
+        .user-bubble {
+            background: linear-gradient(135deg, #7C8CFF 0%, #5B6BFF 100%);
+            border-radius: 20px 20px 4px 20px;
+            box-shadow: 0 4px 15px rgba(91, 107, 255, 0.25);
+        }
+        .ai-bubble {
+            background: white;
+            border-radius: 20px 20px 20px 4px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        /* 电商主图级裁剪容器 */
+        .product-visual {
+            position: relative;
+            height: 320px;
+            background: #fff;
+            overflow: hidden;
+        }
+        .product-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* 关键逻辑：向下偏移并放大，确保隐藏人脸，只展示抹胸裙的材质和轮廓 */
+            object-position: center 60%;
+            transform: scale(1.1);
+        }
+
+        .avatar-container {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .ai-avatar-3d {
+            background: radial-gradient(circle at 30% 30%, #FFFFFF, #D0D7FF);
+            box-shadow: 0 4px 10px rgba(124, 140, 255, 0.3);
+            border: 1.5px solid #fff;
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .anim-up { animation: slideInUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+
+        .btn-gradient {
+            background: linear-gradient(90deg, #7C8CFF, #5B6BFF);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="iphone-frame">
+        <!-- 状态栏占位 -->
+        <div class="h-10 bg-white"></div>
+        
+        <!-- 导航栏 -->
+        <nav class="h-14 bg-white/80 backdrop-blur-xl flex items-center justify-between px-5 border-b border-gray-100/50 sticky top-0 z-50">
+            <div class="flex items-center gap-1.5 opacity-60">
+                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                <span class="text-[13px] font-medium">收起</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <span class="text-[15px] font-bold text-gray-800 tracking-tight">灵犀导购助理</span>
+                <div class="flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                    <span class="text-[9px] text-gray-400 font-bold tracking-widest uppercase">AI Online</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <i data-lucide="more-horizontal" class="w-5 h-5 text-gray-400"></i>
+            </div>
+        </nav>
+
+        <!-- 聊天流 -->
+        <main class="chat-scroll space-y-7">
+            
+            <!-- 用户输入消息 -->
+            <div class="flex justify-end items-start gap-2.5 anim-up">
+                <div class="user-bubble p-4 text-white text-[14px] leading-relaxed max-w-[260px]">
+                    下周去三亚玩，想找一套类似图片里的度假风穿搭 🌴
+                </div>
+                <div class="avatar-container overflow-hidden border-2 border-white shadow-md">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- AI 响应 -->
+            <div class="flex justify-start items-start gap-2.5 anim-up" style="animation-delay: 0.2s">
+                <div class="avatar-container ai-avatar-3d flex items-center justify-center relative">
+                    <span class="text-[16px] mb-1">⚪️</span>
+                    <div class="absolute -top-1 -right-0.5 w-3 h-3 bg-primary-start rounded-full border-2 border-white shadow-sm shadow-blue-400"></div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="ai-bubble p-4 text-gray-700 text-[14px] leading-relaxed max-w-[260px]">
+                        懂你！为您精准匹配了图片同款<span class="text-primary-end font-bold mx-1">【法式蕾丝微透长裙】</span>。这款不仅有海边的浪漫，微透视蕾丝还带出一种轻高级感。✨
+                    </div>
+
+                    <!-- 商品推荐卡片 (完全基于参考图生成) -->
+                    <div class="w-[270px] bg-white rounded-[28px] overflow-hidden shadow-2xl shadow-blue-100/50 border border-white flex flex-col transition-all">
+                        <div class="product-visual">
+                            <!-- 展示符合参考图的浅蓝色、蕾丝、抹胸/吊带、干净背景的长裙穿搭 -->
+                            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=600&q=80" alt="度假风裙装细节">
+                            <!-- 标签装饰 -->
+                            <div class="absolute bottom-3 left-3 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-white flex items-center gap-1.5 font-medium">
+                                <i data-lucide="camera" class="w-3 h-3"></i> 同款视觉匹配度 98%
+                            </div>
+                        </div>
+                        
+                        <div class="p-4 pt-5">
+                            <div class="flex justify-between items-start mb-1.5">
+                                <h3 class="text-[15px] font-bold text-gray-900 leading-tight flex-1">👗 冰蓝色蕾丝拼接抹胸长裙</h3>
+                                <span class="text-[10px] text-gray-400 font-medium ml-2 shrink-0 pt-0.5">热卖中</span>
+                            </div>
+                            
+                            <div class="flex items-baseline gap-1.5 mt-2">
+                                <span class="text-rose-500 text-[20px] font-black tracking-tight">¥199.00</span>
+                                <span class="text-[11px] text-gray-400 line-through">¥499</span>
+                                <div class="ml-auto bg-gray-50 px-2 py-0.5 rounded text-[10px] text-gray-400 border border-gray-100">
+                                    月销2000+
+                                </div>
+                            </div>
+                            
+                            <!-- 核心卖点点位 -->
+                            <div class="mt-4 space-y-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1 h-1 bg-primary-start rounded-full"></div>
+                                    <p class="text-[11px] text-gray-600">蕾丝透纱拼接（法式慵懒）</p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1 h-1 bg-primary-start rounded-full"></div>
+                                    <p class="text-[11px] text-gray-600">冰丝清凉肤感（海边绝配）</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 底部功能按钮 -->
+                        <div class="p-3 pt-0 flex gap-2">
+                            <button class="flex-1 py-3 bg-gray-50 text-[12px] font-bold text-gray-500 rounded-2xl active:bg-gray-100 transition-colors">🔍 详情参数</button>
+                            <button class="flex-[1.5] py-3 btn-gradient text-[12px] font-bold text-white rounded-2xl shadow-lg shadow-blue-200 active:scale-95 transition-all">🛒 一键加购整套</button>
+                        </div>
+                    </div>
+
+                    <!-- 优惠引导 -->
+                    <div class="w-[270px] bg-[#FFF9F2] rounded-2xl p-4 border border-orange-100/50 shadow-sm anim-up" style="animation-delay: 0.4s">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 bg-orange-400 rounded-sm rotate-45"></span>
+                                <span class="text-[12px] font-bold text-orange-900">灵犀专享福利</span>
+                            </div>
+                            <span class="text-[9px] bg-orange-200/50 text-orange-700 px-1.5 py-0.5 rounded font-black">限量50张</span>
+                        </div>
+                        <p class="text-[11px] text-orange-800/80 mb-4 leading-relaxed font-medium">
+                            我为您向掌柜争取到了专属券，下单立减 20 元，还送度假风配饰！
+                        </p>
+                        <div class="bg-white rounded-xl p-0.5 flex items-center overflow-hidden border border-orange-100">
+                            <div class="px-2 py-2 flex flex-col justify-center gap-0.5 border-r border-dashed border-orange-200 shrink-0">
+                                <span class="text-[14px] font-black text-rose-500 leading-none">¥20</span>
+                                <span class="text-[8px] text-gray-400 font-medium">专属神券</span>
+                            </div>
+                            <button class="flex-1 text-[11px] font-black text-orange-600 tracking-wider hover:bg-orange-50 transition-colors py-3">立即领券下单</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 底部输入区域 -->
+        <footer class="bg-white border-t border-gray-100 pb-8 pt-3 px-4 z-50">
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2.5 text-gray-400">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer">
+                        <i data-lucide="plus-circle" class="w-6 h-6"></i>
+                    </div>
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer">
+                        <i data-lucide="camera" class="w-6 h-6"></i>
+                    </div>
+                </div>
+                
+                <div class="flex-1 h-11 bg-[#F5F5F7] rounded-full px-4 flex items-center border border-transparent focus-within:border-primary-start/30 focus-within:bg-white focus-within:shadow-lg transition-all">
+                    <input type="text" placeholder="请输入你的穿搭需求…" class="bg-transparent border-none outline-none w-full text-[13px] text-gray-700">
+                    <i data-lucide="smile" class="w-5 h-5 text-gray-300 ml-2"></i>
+                </div>
+                
+                <button class="w-11 h-11 btn-gradient rounded-full flex items-center justify-center text-white shadow-lg shadow-blue-200 active:scale-90 transition-transform">
+                    <i data-lucide="send-horizontal" class="w-5 h-5 ml-0.5"></i>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            
+            // 滚动到最新消息
+            const chatBody = document.querySelector('.chat-scroll');
+            chatBody.scrollTop = chatBody.scrollHeight;
+        });
+    </script>
+</body>
+</html>
