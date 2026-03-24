@@ -187,3 +187,18 @@
   transform: translateY(-4px);
   box-shadow: 0 20px 40px -12px rgba(124, 140, 255, 0.2);
 }
+
+/* Text Shadow for Overlay Text */
+.text-shadow-lg {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Outfit Hero Card */
+.outfit-hero-card {
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.outfit-hero-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px -12px rgba(124, 140, 255, 0.25);
+}
