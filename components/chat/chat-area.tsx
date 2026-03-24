@@ -7,13 +7,13 @@ import { OutfitCard } from "./outfit-card"
 
 export function ChatArea() {
   return (
-    <main className="flex-1 overflow-y-auto hide-scrollbar px-4 py-5 space-y-5 bg-background">
+    <main className="flex-1 overflow-y-auto hide-scrollbar px-4 py-6 space-y-6 bg-gradient-to-b from-background via-background to-muted/20">
       {/* AI Welcome Message */}
       <AIMessage 
         delay={0}
         content={
           <p>
-            亲爱的 <span className="text-primary font-semibold">88VIP</span>，晚上好！我是您的专属AI导购助理 ✨
+            亲爱的 <span className="text-primary font-semibold">88VIP</span>，晚上好！我是您的专属AI导购助理
             <br /><br />
             店铺目前全场 <span className="text-primary font-bold">满200减20</span>，现货48小时内发货～ 请问有什么可以帮您的？
           </p>
@@ -23,7 +23,7 @@ export function ChatArea() {
       {/* User Message with Image */}
       <UserMessage 
         delay={100}
-        content="下周去三亚玩，想找一套类似图片里的度假风穿搭 🌴"
+        content="下周去三亚玩，想找一套类似图片里的度假风穿搭"
         imageUrl="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&q=80&w=400"
       />
       
@@ -53,7 +53,7 @@ export function ChatArea() {
         content={
           <p>
             完美！根据您的身材数据，为您精准匹配了图片同款 <span className="text-primary font-bold">【法式蕾丝微透长裙】</span>。
-            这款不仅有海边的浪漫感，微透视蕾丝还带出一种轻高级感 ✨
+            这款不仅有海边的浪漫感，微透视蕾丝还带出一种轻高级感
           </p>
         }
       >
